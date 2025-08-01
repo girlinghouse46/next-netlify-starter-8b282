@@ -1,0 +1,118 @@
+
+import React, { useState } from 'react';
+
+const CosmicJourneyWireframe = () => {
+  const [currentScreen, setCurrentScreen] = useState('landing');
+  const [selectedPath, setSelectedPath] = useState(null);
+
+  const startJourney = () => setCurrentScreen('journey');
+  const selectPath = (path) => {
+    setSelectedPath(path);
+    setCurrentScreen('branch');
+  };
+  const resetJourney = () => {
+    setCurrentScreen('landing');
+    setSelectedPath(null);
+  };
+
+  return (
+    <div className="min-h-screen bg-black flex flex-col items-center justify-center text-white font-sans relative overflow-hidden">
+      {/* Landing Page */}
+      {currentScreen === 'landing' && (
+        <div
+          className="w-full h-full flex flex-col justify-center items-center bg-cover"
+          style={{ backgroundImage: "url('https://placehold.co/1920x1080')" }}
+        >
+          <h1 className="text-4xl md:text-6xl font-bold text-center mb-4">
+            Embark on a Cosmic Journey
+          </h1>
+          <p className="text-lg md:text-2xl text-center mb-8 opacity-75">
+            Discover the universe within and beyond.
+          </p>
+          <button
+            onClick={startJourney}
+            className="px-6 py-3 bg-gradient-to-r from-blue-400 to-teal-500 rounded-lg shadow-xl text-lg hover:scale-105 transition-transform"
+          >
+            Begin Journey
+          </button>
+        </div>
+      )}
+
+      {/* Interactive Journey Screen */}
+      {currentScreen === 'journey' && (
+        <div className="flex flex-col h-full w-full bg-black text-white relative p-4">
+          <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
+            <div className="h-96 w-3/4 mx-auto bg-gradient-to-t from-teal-400 to-transparent opacity-30 rounded-bl-full rounded-br-full"></div>
+          </div>
+          <h2 className="text-center text-2xl md:text-4xl mb-6 z-10">
+            Your Journey Unfolds
+          </h2>
+          <p className="text-center text-lg z-10">
+            Swipe along the glowing path to continue.
+          </p>
+          <div className="flex flex-col items-center space-y-8 mt-8 z-10">
+            <button
+              onClick={() => selectPath('wonder')}
+              className="px-8 py-3 text-lg font-medium bg-blue-700 rounded-full hover:bg-blue-500 transition-colors shadow-md"
+            >
+              Explore the Path of Wonder
+            </button>
+            <button
+              onClick={() => selectPath('reflection')}
+              className="px-8 py-3 text-lg font-medium bg-teal-700 rounded-full hover:bg-teal-500 transition-colors shadow-md"
+            >
+              Walk the Path of Reflection
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Branch Details */}
+      {currentScreen === 'branch' && (
+        <div
+          className={`w-full h-full text-center flex flex-col items-center p-6 ${
+            selectedPath === 'wonder'
+              ? 'bg-gradient-to-b from-blue-900 via-purple-700 to-black'
+              : 'bg-gradient-to-b from-blue-700 to-black'
+          }`}
+        >
+          <h2 className="text-2xl md:text-4xl mb-10">
+            {selectedPath === 'wonder' ? 'Path of Wonder' : 'Path of Reflection'}
+          </h2>
+          <p className="text-lg opacity-75 mb-6">
+            {selectedPath === 'wonder'
+              ? 'Nebulae swirl dynamically as you reflect on the vastness of the cosmos.'
+              : 'Dimmed hues invite contemplation of one’s inner universe.'}
+          </p>
+          <button
+            onClick={resetJourney}
+            className="text-sm px-6 py-2 bg-teal-500 rounded-lg shadow-md hover:bg-teal-400 transition-all"
+          >
+            Restart Journey
+          </button>
+        </div>
+      )}
+
+      {/* Climactic Scene */}
+      {currentScreen === 'climactic' && (
+        <div className="w-full h-full flex flex-col items-center justify-center bg-black text-white p-6">
+          <h2 className="text-3xl md:text-5xl font-bold mb-6">
+            Your Constellation Awaits
+          </h2>
+          <div className="bg-white w-64 h-64 rounded-full flex items-center justify-center text-xl text-black">
+            (Generated Constellation Here)
+          </div>
+          <button
+            onClick={resetJourney}
+            className="mt-8 px-8 py-3 bg-teal-500 rounded-lg shadow-md hover:bg-teal-400"
+          >
+            Download Your Journey Map
+          </button>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default CosmicJourneyWireframe;
+

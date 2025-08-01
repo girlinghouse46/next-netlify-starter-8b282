@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(20, 14.3%, 4.1%);
+  --muted: hsl(60, 4.8%, 95.9%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(20, 14.3%, 4.1%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(20, 14.3%, 4.1%);
+  --border: hsl(20, 5.9%, 90%);
+  --input: hsl(20, 5.9%, 90%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(60, 4.8%, 95.9%);
+  --secondary-foreground: hsl(24, 9.8%, 10%);
+  --accent: hsl(60, 4.8%, 95.9%);
+  --accent-foreground: hsl(24, 9.8%, 10%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(20, 14.3%, 4.1%);
+  --radius: 0.5rem;
+  
+  /* Cosmic theme colors */
+  --cosmic-dark: hsl(240, 100%, 3.9%);
+  --cosmic-navy: hsl(237, 31%, 14.1%);
+  --cosmic-blue: hsl(222, 47%, 15.7%);
+  --cosmic-deep: hsl(212, 72%, 21.6%);
+  --cosmic-teal: hsl(162, 75%, 46.1%);
+  --cosmic-teal-dark: hsl(162, 72%, 35.3%);
+  --cosmic-purple: hsl(249, 75%, 64.7%);
+  --cosmic-purple-light: hsl(245, 79%, 76.5%);
+  --cosmic-white: hsl(257, 33%, 87.1%);
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .cosmic-gradient {
+    background: linear-gradient(135deg, hsl(237, 31%, 14.1%) 0%, hsl(222, 47%, 15.7%) 25%, hsl(212, 72%, 21.6%) 50%, hsl(237, 31%, 14.1%) 100%);
+  }
+  
+  .path-wonder {
+    background: linear-gradient(135deg, hsl(249, 75%, 64.7%) 0%, hsl(245, 79%, 76.5%) 50%, hsl(162, 75%, 46.1%) 100%);
+  }
+  
+  .path-reflection {
+    background: linear-gradient(135deg, hsl(212, 72%, 21.6%) 0%, hsl(162, 75%, 46.1%) 50%, hsl(162, 72%, 35.3%) 100%);
+  }
+  
+  .nebula-effect {
+    background: radial-gradient(ellipse at center, hsl(249, 75%, 64.7%, 0.3) 0%, hsl(162, 75%, 46.1%, 0.2) 40%, transparent 70%);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 20px hsl(162, 75%, 46.1%, 0.3); }
+  100% { box-shadow: 0 0 30px hsl(162, 75%, 46.1%, 0.6); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-twinkle {
+  animation: twinkle 3s linear infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 3s linear infinite;
+}
+
+.star-field {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
